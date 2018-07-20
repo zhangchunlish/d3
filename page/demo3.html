@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="opt">
+        <button id="goback">返回上一页</button>
+    </div>
+    <div class="content-one">
+        <p id="apple">Apple</p>
+        <p>Pear</p>
+        <p>Banana</p>
+    </div>
+    <script src="../assets/js/d3.min.js" charset="UTF-8"></script>
+    <script>
+        var btn = document.getElementById("goback");
+        btn.onclick = function () {
+            history.go(-1);
+        }
+        //append()
+        var contentOne=d3.select("div.content-one");
+        contentOne.append("p").text("orange appended").style("color","red");
+        //insert()
+        contentOne.insert("p","#apple").text("battery inserted").style("color","red");
+        //remove()
+        contentOne.select("#apple").remove();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+    <style>
+        .content {
+            margin: 10px;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="opt">
+        <button id="goback">返回上一页</button>
+    </div>
+    <div class="content-one">
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <div class="content-two">
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <!-- <script src="../assets/js/d3.min.js" charset="UTF-8"></script> -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        var btn = document.getElementById("goback");
+        btn.onclick = function () {
+            history.go(-1);
+        }
+        var dataset = [1, 2, 3, 4, 5]
+        var p = d3.select("div.content-one").selectAll("p");
+        //获取update部分
+        var update = p.data(dataset);
+        //获取enter部分
+        var enter = update.enter();
+        //update部分的处理：更新属性值
+        update.text(function (d, i) {
+            return "update " + d;
+        })
+        //enter部分的处理：更新属性值
+        enter.append('p').text(function (d, i) {
+            return "enter " + d;
+        })
+
+        var dataset2 = [1,2];
+        var p2 = d3.select("div.content-two").selectAll("p");
+        //获取update部分
+        var update2 = p2.data(dataset2);
+        //获取exit部分
+        var exit = update2.exit();
+        //update部分的处理：更新属性值
+        update2.text(function (d, i) {
+            return "update " + d;
+        })
+        //enter部分的处理：更新属性值
+        exit.text(function (d, i) {
+            return "exit " + d;
+        })
+    </script>
+</body>
+
+</html>

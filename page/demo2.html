@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="opt">
+        <button id="goback">返回上一页</button>
+    </div>
+    <div class="content-one">
+        <p>Apple</p>
+        <p>Pear</p>
+        <p>Banana</p>
+    </div>
+    <div class="content-two">
+        <p>Apple</p>
+        <p>Pear</p>
+        <p>Banana</p>
+    </div>
+    <script src="../assets/js/d3.min.js" charset="UTF-8"></script>
+    <script>
+        var btn = document.getElementById("goback");
+        btn.onclick = function () {
+            history.go(-1);
+        }
+
+        var msg = 'China';
+        //选择<body>中所有的<p>,选择集保存在变量 p 中
+        var p = d3.select("body").select("div.content-one")
+            .selectAll("p");
+        p.datum(msg);
+        p.text(function (d, i) {
+            return "第 " + i + " 个元素绑定的数据是 " + d;
+        });
+
+        var dataset = ["I like dogs", "I like cats", "I like snakes"];
+        var p2 = d3.select("body").select("div.content-two")
+            .selectAll("p");
+        p2.data(dataset).text(function(d,i){
+            return "第 " + i + " 个元素绑定的数据是 " + d;
+        })
+    </script>
+</body>
+
+</html>

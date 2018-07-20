@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+    <style>
+        .content {
+            margin: 10px;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="opt">
+        <button id="goback">返回上一页</button>
+    </div>
+    <div class="content">
+
+    </div>
+    <!-- <script src="../assets/js/d3.min.js" charset="UTF-8"></script> -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script>
+        var btn = document.getElementById("goback");
+        btn.onclick = function () {
+            history.go(-1);
+        }
+        //添加SVG 画布
+        var width = 800,
+            height = 800;
+        var svg = d3.select("div.content").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        var circle1 = svg.append("circle")
+            .attr("cx", 100)
+            .attr("cy", 100)
+            .attr("r", 45)
+            .style("fill", "green");
+
+        //在1秒（1000毫秒）内将圆心坐标由100变为300
+        circle1.transition()
+            .duration(1000)
+            .attr("cx", 200);
+
+
+        var circle2 = svg.append("circle")
+            .attr("cx", 100)
+            .attr("cy", 100)
+            .attr("r", 45)
+            .style("fill", "green"); //与第一个圆一样，省略部分代码
+
+            //在1.5秒（1500毫秒）内将圆心坐标由100变为300，
+            //将颜色从绿色变为红色
+            circle2.transition()
+            .duration(1500)
+            .attr("cx", 300)
+            .style("fill", "orange");
+
+        var circle3 = svg.append("circle")
+            .attr("cx", 100)
+            .attr("cy", 100)
+            .attr("r", 45)
+            .style("fill", "green"); //与第一个圆一样，省略部分代码
+
+            //在2秒（2000毫秒）内将圆心坐标由100变为300
+            //将颜色从绿色变为红色
+            //将半径从45变成25
+            //过渡方式采用bounce（在终点处弹跳几次）
+            circle3.transition()
+            .duration(2000)
+            .ease("bounce")
+            .attr("cx", 400)
+            .style("fill", "yellow")
+            .attr("r", 25);
+    </script>
+</body>
+
+</html>

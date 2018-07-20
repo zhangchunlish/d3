@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="opt">
+        <button id="goback">返回上一页</button>
+    </div>
+    <div class="content">
+        <p>Hello World</p>
+        <p>Hello World</p>
+    </div>
+    <script src="../assets/js/d3.min.js" charset="UTF-8"></script>
+    <script>
+        var btn = document.getElementById("goback");
+        btn.onclick = function () {
+            history.go(-1);
+        }
+        //选择<body>中所有的<p>，其文本内容为 www.ourd3js.com，选择集保存在变量 p 中
+        var p = d3.select("body")
+            .selectAll("p")
+            .text("www.ourd3js.com");
+
+        //修改段落的颜色和字体大小
+        p.style("color", "red")
+            .style("font-size", "72px");
+    </script>
+</body>
+
+</html>
